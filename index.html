@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2196F3">
+    <meta name="description" content="PWA приложение для просмотра карточек">
+    <title>Карточки</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="icons/icon-192.png">
+</head>
+<body ontouchstart>
+    <div class="app-container">
+        <!-- Кнопка навигации: предыдущая -->
+        <button class="nav-btn nav-btn-prev" id="prevBtn" aria-label="Предыдущая карточка">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+
+        <!-- Контейнер карточки -->
+        <div class="card-container" id="cardContainer">
+            <div class="card" id="card">
+                <div class="card-text" id="cardText">Загрузка...</div>
+            </div>
+        </div>
+
+        <!-- Кнопка навигации: следующая -->
+        <button class="nav-btn nav-btn-next" id="nextBtn" aria-label="Следующая карточка">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
+
+        <!-- Индикатор прогресса -->
+        <div class="progress-indicator" id="progressIndicator">
+            <span id="currentCard">1</span> / <span id="totalCards">1</span>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>

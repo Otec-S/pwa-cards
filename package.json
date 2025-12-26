@@ -1,0 +1,16 @@
+{
+  "name": "pwa-cards",
+  "version": "1.0.0",
+  "description": "PWA приложение для просмотра карточек на TypeScript",
+  "scripts": {
+    "build": "tsc && npm run copy-assets",
+    "copy-assets": "cp index.html dist/ && cp styles.css dist/ && cp manifest.json dist/ && cp cards.json dist/ && cp -r icons dist/",
+    "watch": "tsc --watch",
+    "dev": "npm run build && npx http-server dist -p 8000",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "http-server": "^14.1.1"
+  }
+}
