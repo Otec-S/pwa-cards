@@ -8,6 +8,7 @@ const urlsToCache: string[] = [
   '/index.html',
   '/styles.css',
   '/app.js',
+  '/sw.js',
   '/cards.json',
   '/manifest.json',
   '/icons/icon-192.png',
