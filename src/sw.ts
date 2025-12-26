@@ -2,17 +2,17 @@
 
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_NAME = 'pwa-cards-v2';
+const CACHE_NAME = 'pwa-cards-v3';
 const urlsToCache: string[] = [
-  '/',
-  '/index.html',
-  '/styles.css',
-  '/app.js',
-  '/sw.js',
-  '/cards.json',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  './',
+  './index.html',
+  './styles.css',
+  './app.js',
+  './sw.js',
+  './cards.json',
+  './manifest.json',
+  './icons/icon-192.png',
+  './icons/icon-512.png'
 ];
 
 /**

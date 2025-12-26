@@ -2,7 +2,7 @@
   "name": "Tip-Top PWA",
   "short_name": "Tip-Top",
   "description": "PWA приложение для Tip-Top",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#667eea",
   "theme_color": "#2196F3",
