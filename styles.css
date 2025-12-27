@@ -27,7 +27,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 140px 20px 120px 20px;
+    padding: 20px;
     position: relative;
 }
 
@@ -38,7 +38,7 @@ body {
     padding: 40px;
     max-width: 800px;
     width: 100%;
-    max-height: 100%;
+    max-height: calc(100vh - 300px);
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -213,7 +213,7 @@ body {
 
 .random-btn {
     position: absolute;
-    top: 90px;
+    top: max(90px, calc(env(safe-area-inset-top) + 70px));
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
@@ -236,6 +236,13 @@ body {
 
 .random-btn:active {
     transform: translateX(-50%) scale(0.98);
+}
+
+/* Адаптация для больших экранов */
+@media (min-width: 769px) {
+    .random-btn {
+        top: max(110px, calc(env(safe-area-inset-top) + 90px));
+    }
 }
 
 /* Мобильная адаптация */
