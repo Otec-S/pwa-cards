@@ -139,7 +139,7 @@ body {
 
 .nav-btn {
     position: absolute;
-    bottom: max(80px, calc(env(safe-area-inset-bottom) + 60px));
+    bottom: max(40px, calc(env(safe-area-inset-bottom) + 20px));
     background: rgba(255, 255, 255, 0.9);
     border: none;
     border-radius: 30px;
