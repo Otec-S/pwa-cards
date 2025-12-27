@@ -18,6 +18,7 @@ const cardElement = document.getElementById('card') as HTMLDivElement;
 const cardTextElement = document.getElementById('cardText') as HTMLDivElement;
 const prevBtn = document.getElementById('prevBtn') as HTMLButtonElement;
 const nextBtn = document.getElementById('nextBtn') as HTMLButtonElement;
+const randomBtn = document.getElementById('randomBtn') as HTMLButtonElement;
 const currentCardElement = document.getElementById('currentCard') as HTMLSpanElement;
 const totalCardsElement = document.getElementById('totalCards') as HTMLSpanElement;
 const cardContainer = document.getElementById('cardContainer') as HTMLDivElement;
@@ -146,6 +147,31 @@ function goToNextCard(): void {
 }
 
 /**
+ * Переход к случайной карточке
+ */
+function goToRandomCard(): void {
+  if (state.cards.length <= 1 || state.isAnimating) return;
+  
+  // Генерируем случайный индекс, отличный от текущего
+  let randomIndex: number;
+  do {
+    randomIndex = Math.floor(Math.random() * state.cards.length);
+  } while (randomIndex === state.currentIndex);
+  
+  // Определяем направление анимации
+  const outClass = randomIndex > state.currentIndex ? 'slide-out-left' : 'slide-out-right';
+  const inClass = randomIndex > state.currentIndex ? 'slide-in-right' : 'slide-in-left';
+  
+  applyAnimation(outClass, inClass, () => {
+    state.currentIndex = randomIndex;
+    renderCard();
+    updateProgress();
+    updateButtons();
+    savePosition(state.currentIndex);
+  });
+}
+
+/**
  * Обработка свайпа
  */
 function handleSwipe(): void {
@@ -200,6 +226,9 @@ function setupEventListeners(): void {
       goToNextCard();
     }
   });
+
+  // Кнопка случайной карточки
+  randomBtn.addEventListener('click', goToRandomCard);
 }
 
 /**

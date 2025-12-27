@@ -40,9 +40,9 @@ body {
     width: 100%;
     max-height: 80vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     transition: transform 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
 }
 
 .card.slide-out-left {
@@ -106,14 +106,16 @@ body {
 }
 
 .card-text {
-    font-size: clamp(1rem, 3.5vw, 2rem);
+    font-size: 1.5rem;
     line-height: 1.6;
     color: #333;
     text-align: center;
     overflow-y: auto;
-    max-height: 100%;
+    flex: 1;
+    min-height: 0;
     padding: 10px;
     word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Стили для скроллбара */
@@ -137,12 +139,11 @@ body {
 
 .nav-btn {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: 30px;
     background: rgba(255, 255, 255, 0.9);
     border: none;
-    border-radius: 50%;
-    width: 60px;
+    border-radius: 30px;
+    width: 120px;
     height: 60px;
     display: flex;
     align-items: center;
@@ -155,11 +156,6 @@ body {
 
 .nav-btn:hover {
     background: white;
-    transform: translateY(-50%) scale(1.1);
-}
-
-.nav-btn:active {
-    transform: translateY(-50%) scale(0.95);
 }
 
 .nav-btn:disabled {
@@ -175,16 +171,34 @@ body {
 }
 
 .nav-btn-prev {
-    left: 20px;
+    left: 50%;
+    transform: translateX(calc(-100% - 10px));
+}
+
+.nav-btn-prev:hover {
+    transform: translateX(calc(-100% - 10px)) scale(1.1);
+}
+
+.nav-btn-prev:active {
+    transform: translateX(calc(-100% - 10px)) scale(0.95);
 }
 
 .nav-btn-next {
-    right: 20px;
+    left: 50%;
+    transform: translateX(10px);
+}
+
+.nav-btn-next:hover {
+    transform: translateX(10px) scale(1.1);
+}
+
+.nav-btn-next:active {
+    transform: translateX(10px) scale(0.95);
 }
 
 .progress-indicator {
     position: absolute;
-    bottom: 30px;
+    top: 30px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.7);
@@ -197,6 +211,33 @@ body {
     z-index: 10;
 }
 
+.random-btn {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    padding: 12px 28px;
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(17, 153, 142, 0.3);
+}
+
+.random-btn:hover {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 6px 16px rgba(17, 153, 142, 0.4);
+}
+
+.random-btn:active {
+    transform: translateX(-50%) scale(0.98);
+}
+
 /* Мобильная адаптация */
 @media (max-width: 768px) {
     .card {
@@ -204,13 +245,8 @@ body {
         border-radius: 12px;
     }
 
-    /* Скрываем стрелки на мобильных устройствах */
-    .nav-btn {
-        display: none;
-    }
-
     .progress-indicator {
-        bottom: 20px;
+        top: 20px;
         padding: 10px 20px;
     }
 }
