@@ -194,6 +194,19 @@ async function registerServiceWorker(): Promise<void> {
     try {
       const registration = await navigator.serviceWorker.register('sw.js');
       console.log('Service Worker зарегистрирован:', registration);
+      
+      // Обработка обновлений Service Worker
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        if (newWorker) {
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              console.log('Доступно обновление приложения. Обновите страницу для применения изменений.');
+              // Можно добавить UI для уведомления пользователя об обновлении
+            }
+          });
+        }
+      });
     } catch (error) {
       console.error('Ошибка регистрации Service Worker:', error);
     }

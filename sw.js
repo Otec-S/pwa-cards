@@ -18,10 +18,18 @@ self.addEventListener('install', (event) => {
     event.waitUntil(caches.open(CACHE_NAME)
         .then((cache) => {
         console.log('Кэширование файлов');
-        return cache.addAll(urlsToCache.map(url => new Request(url, { cache: 'reload' })));
+        // Кэшируем файлы по отдельности для лучшей отладки
+        return Promise.allSettled(urlsToCache.map(url => cache.add(new Request(url, { cache: 'reload' }))
+            .catch(err => console.warn(`Не удалось закэшировать ${url}:`, err)))).then(results => {
+            const failed = results.filter(r => r.status === 'rejected').length;
+            if (failed > 0) {
+                console.warn(`Не удалось закэшировать ${failed} файлов`);
+            }
+            console.log(`Успешно закэшировано ${results.length - failed} из ${results.length} файлов`);
+        });
     })
         .catch((error) => {
-        console.error('Ошибка при кэшировании:', error);
+        console.error('Критическая ошибка при кэшировании:', error);
     }));
     self.skipWaiting();
 });
